@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import Loading from "@/components/Loading";
 import { cn } from "@/lib/utils";
 import AppSidebar from "@/components/AppSidebar";
+import Navbar from "@/components/Navbar";
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
     const [courseId, setCourseId] = useState<string | null>(null);
@@ -24,6 +25,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <div className="dashboard__content">
                     {/* Chaper sidebar is here */}
                     <div className={cn("dashboard__main")} style={{ height: "100vh" }}>
+                        <Navbar />
                         <main className="dashboard__body">
                             {children}
                         </main>
