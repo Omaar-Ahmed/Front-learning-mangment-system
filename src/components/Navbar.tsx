@@ -15,7 +15,7 @@ const Navbar = ({ isCoursePage }: { isCoursePage: boolean }) => {
         <nav className='dashboard-navbar '>
             <div className="dashboard-navbar__container">
                 <div className="dashboard-navbar__search">
-                    <div className="md:hideen">
+                    <div className="md:hidden">
                         <SidebarTrigger className='dashboard-navbar__sidebar-trigger' />
                     </div>
                     <div className='flex items-center gap-4'>
@@ -32,9 +32,9 @@ const Navbar = ({ isCoursePage }: { isCoursePage: boolean }) => {
                     </div>
                 </div>
                 <div className='dashboard-navbar__actions'>
-                    <button className='dashboard-navbar__notification-button'>
-                        <span className='dashboard-navbar__notification-indicator'></span>
-                        <Bell className='dashboard-navbar__notification-icon' />
+                    <button className='nondashboard-navbar__notification-button'>
+                        <span className='nondashboard-navbar__notification-indicator'></span>
+                        <Bell className='nondashboard-navbar__notification-icon' />
                     </button>
                         <UserButton appearance={{
                             baseTheme: dark,
