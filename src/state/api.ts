@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BaseQueryApi, FetchArgs } from "@reduxjs/toolkit/query";
+import { User } from '@clerk/nextjs/server'
 
 const customBase = async (
   args: string | FetchArgs,
@@ -29,6 +30,14 @@ export const api = createApi({
   reducerPath: "api",
   tagTypes: ["Courses"],
   endpoints: (build) => ({
+    updateUser: build.mutation<User, Partial<User> & { userId: string }>({
+      query: ({ userId, ...updatedUser }) => ({
+        url: `userSettings/${userId}`,
+        method: "PUT",
+        body: updatedUser,
+      }),
+      invalidatesTags: ["Users"]
+    }),
     getCourses: build.query<Course[], { category?: string }>({
       query: ({ category }) => ({
         url: "courses/listcourses",
@@ -45,7 +54,7 @@ export const api = createApi({
 
 
 export const {
-
+  useUpdateUserMutation,
   useGetCoursesQuery,
   useGetCourseQuery,
 
