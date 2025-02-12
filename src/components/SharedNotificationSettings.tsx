@@ -7,6 +7,9 @@ import { useUser } from '@clerk/nextjs'
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import Header from './Header';
+import { Form } from '@/components/ui/form';
+import { CustomFormField } from './CustomFormField';
+import { Button } from '@/components/ui/button';
 
 const SharedNotificationSettings = ({
     title = "Notification Settings",
@@ -49,7 +52,35 @@ const SharedNotificationSettings = ({
     return (
         <div className='notification-settings'>
             <Header title={title} subtitle={subtitle} />
-        </div>
+            <Form {...methods}>
+                <form onSubmit={methods.handleSubmit(onSubmit)}
+                    className='notification-settings__form'>
+                    <div className="notification-settings__fields">
+                        <CustomFormField name='courseNotifications'
+                            label='Course Notifications'
+                            type='switch' />
+                        <CustomFormField name='emailAlerts'
+                            label='Email Alerts'
+                            type='switch' />
+                           <CustomFormField name='smsAlerts'
+                            label='SMS Alerts'
+                            type='switch' />
+                        <CustomFormField name='notificationFrequency'
+                            label='Notification Frequency'
+                            type='select'
+                            options={[
+                                { value: 'daily', label: 'Daily', },
+                                { value: 'weekly', label: 'Weekly', },
+                                { value: 'immediate', label: 'Immediate', },
+                            ]} />   
+
+                    </div>
+                    <Button className='notification-settings__submit'>
+                        Update Settings
+                    </Button>
+                </form>
+            </Form>
+        </div >
     )
 }
 
