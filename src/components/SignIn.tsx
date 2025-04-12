@@ -10,9 +10,11 @@ const SignInComponant = () => {
     const isCheckoutPage = searchParams.get("showSignUp") !== null;
     const courseId = searchParams.get("id");
     const signUpUrl = isCheckoutPage ? `/checkout?step=1&id=${courseId}&showSignUp=true` : "/signup";
+    console.log(isCheckoutPage)
     const getRedirectUrl = () => {
         if (isCheckoutPage) {
             return `/checkout?step=2&id=${courseId}`
+            
         }
         const userType = user?.publicMetadata?.userType as string;
         if (userType === "teacher") {
